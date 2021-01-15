@@ -1,0 +1,30 @@
+server:
+  port: 9001
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: portal-dev.fp.dyn.nesc.nokia.net:32018
+          producer-properties:
+            max.request.size: 15728640
+          consumer-properties:
+            fetch.message.max.bytes: 20971520
+          auto-create-topics: true
+          required-acks: 1
+      bindings:
+        input:
+          destination: orgChangeTopic
+          content-type: application/json
+          group: licensingGroup_0
+        inboundOrgChanges:
+          destination: orgChangeTopic
+          content-type: application/json
+          group: licensingGroup_1
+
+#Setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.nokia: INFO

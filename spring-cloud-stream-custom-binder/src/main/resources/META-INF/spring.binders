@@ -1,0 +1,2 @@
+myFileBinder:\
+com.nokia.code.springcloud.springcloudstreamcustombinder.config.FileMessageBinderConfiguration

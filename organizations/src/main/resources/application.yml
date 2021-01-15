@@ -1,0 +1,29 @@
+server:
+  port: 9002
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://10.92.104.162:3306/spm?useSSL=false
+    username: root
+    password: arthur
+    driver-class-name: org.mariadb.jdbc.Driver
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: portal-dev.fp.dyn.nesc.nokia.net:32018
+          producer-properties:
+            max.request.size: 15728640
+          consumer-properties:
+            fetch.message.max.bytes: 20971520
+          auto-create-topics: true
+          required-acks: 1
+      bindings:
+        output:
+          destination: orgChangeTopic
+          content-type: application/json
